@@ -7,6 +7,8 @@
 //
 
 #import "RSAESCryptorTests.h"
+#import "RSAESCryptor.h"
+#import "NSData+Base64.h"
 
 @implementation RSAESCryptorTests
 
@@ -24,9 +26,23 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testMain
 {
-    STFail(@"Unit tests are not implemented yet in RSAESCryptorTests");
+    NSString *pubKeyPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"RSAESCryptorTest" ofType:@"cer"];
+    NSString *priKeyPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"RSAESCryptorTest" ofType:@"p12"];
+    NSString *password = @"test";
+    NSString *textData = @"Data";
+
+    RSAESCryptor *cryptor = [RSAESCryptor sharedCryptor];
+
+    [cryptor loadPublicKey:pubKeyPath];
+    NSData *encData = [cryptor encryptData:[textData dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [cryptor loadPrivateKey:priKeyPath password:password];
+    NSData *decData = [cryptor decryptData:encData];
+    NSString *decText = [[NSString alloc] initWithData:decData encoding:NSUTF8StringEncoding];
+
+    STAssertTrue([decText isEqualToString:textData], @"testMain failed.");
 }
 
 @end
