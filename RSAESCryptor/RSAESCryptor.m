@@ -126,48 +126,59 @@
     return result;
 }
 
-- (void)loadPrivateKey:(NSString *)keyPath password:(NSString *)password {
-    [self releaseSecVars];
-    
-    NSData *PKCS12Data = [NSData dataWithContentsOfFile:keyPath];
-
-    CFDataRef inPKCS12Data = (__bridge CFDataRef)PKCS12Data;
-    
-    SecIdentityRef myIdentity;
-    SecTrustRef myTrust;
-    
-    CFStringRef passwordRef = (__bridge CFStringRef)password;
+OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,
+                                 SecIdentityRef *outIdentity,
+                                 SecTrustRef *outTrust,
+                                 CFStringRef password)
+{
     const void *keys[] =   { kSecImportExportPassphrase };
-    const void *values[] = { passwordRef };
+    const void *values[] = { password };
     CFDictionaryRef optionsDictionary = CFDictionaryCreate(NULL, keys,
                                                            values, 1,
                                                            NULL, NULL);
     
     CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
-
     OSStatus securityError = SecPKCS12Import(inPKCS12Data,
                                              optionsDictionary,
                                              &items);
     
     if (securityError == 0) {
-        CFDictionaryRef myIdentityAndTrust = CFArrayGetValueAtIndex(items, 0);
+        CFDictionaryRef myIdentityAndTrust = CFArrayGetValueAtIndex (items, 0);
         const void *tempIdentity = NULL;
-        tempIdentity = CFDictionaryGetValue(myIdentityAndTrust,
-                                            kSecImportItemIdentity);
-        myIdentity = (SecIdentityRef)tempIdentity;
+        tempIdentity = CFDictionaryGetValue(myIdentityAndTrust, kSecImportItemIdentity);
+        *outIdentity = (SecIdentityRef)tempIdentity;
         const void *tempTrust = NULL;
         tempTrust = CFDictionaryGetValue (myIdentityAndTrust, kSecImportItemTrust);
-        myTrust = (SecTrustRef)tempTrust;
+        *outTrust = (SecTrustRef)tempTrust;
     }
     
     if (optionsDictionary)
         CFRelease(optionsDictionary);
     
+    return securityError;
+}
+
+- (void)loadPrivateKey:(NSString *)keyPath password:(NSString *)password {
+    [self releaseSecVars];
+    
+    NSData *PKCS12Data = [NSData dataWithContentsOfFile:keyPath];
+    CFDataRef inPKCS12Data = (__bridge CFDataRef)PKCS12Data;
+    CFStringRef passwordRef = (__bridge CFStringRef)password;
+    
+    SecIdentityRef myIdentity;
+    SecTrustRef myTrust;
+    OSStatus status = extractIdentityAndTrust(inPKCS12Data, &myIdentity, &myTrust, passwordRef);
+    NSAssert(status == noErr, @"extractIdentityAndTrust failed.");
+
     SecTrustResultType trustResult;
-    if (securityError == noErr) {
-        securityError = SecTrustEvaluate(myTrust, &trustResult);
-    }
-    SecIdentityCopyPrivateKey(myIdentity, &_privateKeyRef);
+    status = SecTrustEvaluate(myTrust, &trustResult);
+    NSAssert(status == errSecSuccess, @"SecTrustEvaluate failed.");
+
+    status = SecIdentityCopyPrivateKey(myIdentity, &_privateKeyRef);
+    NSAssert(status == errSecSuccess, @"SecIdentityCopyPrivateKey failed.");
+    
+    if (myIdentity) CFRelease(myIdentity);
+    if (myTrust) CFRelease(myTrust);
 }
 
 - (NSData *)decryptData:(NSData *)content {
