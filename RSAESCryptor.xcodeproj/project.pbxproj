@@ -15,6 +15,12 @@
 		2638C87215B2BDEC00813E92 /* libRSAESCryptor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2638C85A15B2BDEC00813E92 /* libRSAESCryptor.a */; };
 		2638C87815B2BDEC00813E92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2638C87615B2BDEC00813E92 /* InfoPlist.strings */; };
 		2638C87B15B2BDEC00813E92 /* RSAESCryptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638C87A15B2BDEC00813E92 /* RSAESCryptorTests.m */; };
+		2638C88915B2C15200813E92 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 2638C88515B2C15200813E92 /* NSData+Base64.h */; };
+		2638C88A15B2C15200813E92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638C88615B2C15200813E92 /* NSData+Base64.m */; };
+		2638C88B15B2C15200813E92 /* NSString+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 2638C88715B2C15200813E92 /* NSString+Base64.h */; };
+		2638C88C15B2C15200813E92 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638C88815B2C15200813E92 /* NSString+Base64.m */; };
+		2638C89015B2C16100813E92 /* NSData+CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 2638C88E15B2C16100813E92 /* NSData+CommonCrypto.h */; };
+		2638C89115B2C16100813E92 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638C88F15B2C16100813E92 /* NSData+CommonCrypto.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,16 +36,22 @@
 /* Begin PBXFileReference section */
 		2638C85A15B2BDEC00813E92 /* libRSAESCryptor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRSAESCryptor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2638C85D15B2BDEC00813E92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2638C86115B2BDEC00813E92 /* RSAESCryptor-Prefix.pch */ = {isa = PBXFileReference; path = "RSAESCryptor-Prefix.pch"; sourceTree = "<group>"; };
-		2638C86215B2BDEC00813E92 /* RSAESCryptor.h */ = {isa = PBXFileReference; path = RSAESCryptor.h; sourceTree = "<group>"; };
+		2638C86115B2BDEC00813E92 /* RSAESCryptor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSAESCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		2638C86215B2BDEC00813E92 /* RSAESCryptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAESCryptor.h; sourceTree = "<group>"; };
 		2638C86315B2BDEC00813E92 /* RSAESCryptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAESCryptor.m; sourceTree = "<group>"; };
 		2638C86A15B2BDEC00813E92 /* RSAESCryptorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSAESCryptorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2638C86B15B2BDEC00813E92 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		2638C86D15B2BDEC00813E92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		2638C87515B2BDEC00813E92 /* RSAESCryptorTests-Info.plist */ = {isa = PBXFileReference; path = "RSAESCryptorTests-Info.plist"; sourceTree = "<group>"; };
+		2638C87515B2BDEC00813E92 /* RSAESCryptorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSAESCryptorTests-Info.plist"; sourceTree = "<group>"; };
 		2638C87715B2BDEC00813E92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2638C87915B2BDEC00813E92 /* RSAESCryptorTests.h */ = {isa = PBXFileReference; path = RSAESCryptorTests.h; sourceTree = "<group>"; };
+		2638C87915B2BDEC00813E92 /* RSAESCryptorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAESCryptorTests.h; sourceTree = "<group>"; };
 		2638C87A15B2BDEC00813E92 /* RSAESCryptorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAESCryptorTests.m; sourceTree = "<group>"; };
+		2638C88515B2C15200813E92 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		2638C88615B2C15200813E92 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		2638C88715B2C15200813E92 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		2638C88815B2C15200813E92 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		2638C88E15B2C16100813E92 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		2638C88F15B2C16100813E92 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +109,8 @@
 		2638C85F15B2BDEC00813E92 /* RSAESCryptor */ = {
 			isa = PBXGroup;
 			children = (
+				2638C88D15B2C16100813E92 /* CommonCrypto */,
+				2638C88415B2C15200813E92 /* Base64 */,
 				2638C86215B2BDEC00813E92 /* RSAESCryptor.h */,
 				2638C86315B2BDEC00813E92 /* RSAESCryptor.m */,
 				2638C86015B2BDEC00813E92 /* Supporting Files */,
@@ -131,6 +145,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2638C88415B2C15200813E92 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				2638C88515B2C15200813E92 /* NSData+Base64.h */,
+				2638C88615B2C15200813E92 /* NSData+Base64.m */,
+				2638C88715B2C15200813E92 /* NSString+Base64.h */,
+				2638C88815B2C15200813E92 /* NSString+Base64.m */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
+		2638C88D15B2C16100813E92 /* CommonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				2638C88E15B2C16100813E92 /* NSData+CommonCrypto.h */,
+				2638C88F15B2C16100813E92 /* NSData+CommonCrypto.m */,
+			);
+			path = CommonCrypto;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -138,6 +172,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2638C88915B2C15200813E92 /* NSData+Base64.h in Headers */,
+				2638C88B15B2C15200813E92 /* NSString+Base64.h in Headers */,
+				2638C89015B2C16100813E92 /* NSData+CommonCrypto.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +277,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2638C86415B2BDEC00813E92 /* RSAESCryptor.m in Sources */,
+				2638C88A15B2C15200813E92 /* NSData+Base64.m in Sources */,
+				2638C88C15B2C15200813E92 /* NSString+Base64.m in Sources */,
+				2638C89115B2C16100813E92 /* NSData+CommonCrypto.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

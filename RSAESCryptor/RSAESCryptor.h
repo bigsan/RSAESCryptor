@@ -10,4 +10,12 @@
 
 @interface RSAESCryptor : NSObject
 
++ (RSAESCryptor *)sharedCryptor;
+
+- (void)loadPublicKey:(NSString *)keyPath;
+- (NSData *)encryptData:(NSData *)content;
+
+- (void)loadPrivateKey:(NSString *)keyPath password:(NSString *)password;
+- (NSData *)decryptData:(NSData *)content;
+
 @end
