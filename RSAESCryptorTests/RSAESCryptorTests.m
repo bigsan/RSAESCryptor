@@ -8,7 +8,6 @@
 
 #import "RSAESCryptorTests.h"
 #import "RSAESCryptor.h"
-#import "NSData+Base64.h"
 
 @implementation RSAESCryptorTests
 

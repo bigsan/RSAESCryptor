@@ -7,7 +7,6 @@
 //
 
 #import "RSAESCryptor.h"
-#import "NSData+Base64.h"
 #import "NSData+CommonCrypto.h"
 #import <Security/Security.h>
 
@@ -82,6 +81,7 @@
                                          [key mutableBytes],
                                          &keyBufferSize);
     NSAssert(sanityCheck == noErr, @"Error decrypting, OSStatus == %d.", sanityCheck);
+    [key setLength:keyBufferSize];
 
     return key;
 }
@@ -112,21 +112,12 @@
 }
 
 - (NSData *)encryptData:(NSData *)content {
-    // generate key
     NSData *aesKey = [self generateKey];
-    NSLog(@"aesKey length = %d, base64 = %@", [aesKey length], [aesKey base64EncodedString]);
-    
-    // generate iv
     NSData *iv = [self generateIV];
-    NSLog(@"iv length = %d, base64 = %@", [iv length], [iv base64EncodedString]);
-    
-    // encrypt data with aesKey
     NSData *encryptedData = [content AES256EncryptedDataUsingKey:aesKey andIV:iv error:nil];
-    NSLog(@"encryptedData length = %d, base64 = %@", [encryptedData length], [encryptedData base64EncodedString]);
     
     // encrypt aesKey with publicKey
     NSData *encryptedAESKey = [self wrapSymmetricKey:aesKey keyRef:_publicKeyRef];
-    NSLog(@"encryptedAESKey length = %d", [encryptedAESKey length]);
     
     NSMutableData *result = [NSMutableData data];
     [result appendData:iv];
@@ -184,8 +175,9 @@
     NSData *wrappedSymmetricKey = [content subdataWithRange:NSMakeRange(16, 256)];
     NSData *encryptedData = [content subdataWithRange:NSMakeRange(272, [content length] - 272)];
     
+    // decrypt wrappedSymmetricKey with privateKey
     NSData *key = [self unwrapSymmetricKey:wrappedSymmetricKey keyRef:_privateKeyRef];
-    
+        
     return [encryptedData decryptedAES256DataUsingKey:key andIV:iv error:nil];
 }
 
