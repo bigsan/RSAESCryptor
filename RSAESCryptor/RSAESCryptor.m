@@ -65,6 +65,7 @@
                                          cipher.mutableBytes,
                                          &cipherBufferSize);
     NSAssert(sanityCheck == noErr, @"Error encrypting, OSStatus == %d.", sanityCheck);
+    [cipher setLength:cipherBufferSize];
     
     return cipher;
 }
