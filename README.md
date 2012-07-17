@@ -33,7 +33,7 @@ Load private key from PKCS#12/PFX format file, decrypt NSData according to the f
 ## How to create .cer and .p12 in Windows
 
 	1. Open Visual Studio Command Prompt
-	2. C:\> makecert -pe -ss My -sr LocalMachine -n CN="YOUR_CERT_NAME" -sky exchange
+	2. C:\> makecert -pe -ss My -sr LocalMachine -n CN="YOUR_CERT_NAME" -sky exchange -len 2048
 	3. C:\> mmc
 	4. Add Certificates snap-in in MMC console, choose computer accounts
 	5. expand Personal/Certificate folder, then export which you want.
